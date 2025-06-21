@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import API_URL from "../config";
 
 export default function Home({ SearchValue }) {
   let [AllBlogs, setAllBlogs] = useState([]);
@@ -10,7 +11,7 @@ export default function Home({ SearchValue }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("http://127.0.0.1:5500/blog/allblogs");
+        const res = await axios.get(`${API_URL}/blog/allblogs`);
         setAllBlogs(res.data.blogs || res.data);
       } catch (err) {
         console.error("Error fetching blogs:", err);

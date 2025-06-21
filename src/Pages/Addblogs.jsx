@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import API_URL from "../config";
 
 export default function Addblogs() {
 
@@ -16,7 +17,7 @@ export default function Addblogs() {
       title: e.target.title.value,
       desc: e.target.desc.value
     };
-    let Res = await axios.post("http://127.0.0.1:5500/blog", data, {
+    let Res = await axios.post(`${API_URL}/blog`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       }

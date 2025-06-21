@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Heart, Send, MessageCircle } from "lucide-react";
+import API_URL from "../config";
 
 export default function Feeds() {
   const [allblogs, setAllBlogs] = useState([]);
@@ -8,7 +8,7 @@ export default function Feeds() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("http://127.0.0.1:5500/blog/allblogs");
+        const res = await axios.get(`${API_URL}/blog/allblogs`);
         setAllBlogs(res.data.blogs || res.data);
       } catch (err) {
         console.error("Error fetching blogs:", err);
@@ -53,19 +53,6 @@ export default function Feeds() {
                Blog :  {blog.desc}
               </h1>
               </div>
-
-
-              {/* <div className="flex items-center space-x-4 mt-4">
-                <button className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
-                  <Heart size={20} className="mr-1" />
-                </button>
-                <button className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
-                  <MessageCircle size={20} className="mr-1" />
-                </button>
-                <button className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
-                  <Send size={20} className="mr-1" />
-                </button>
-              </div> */}
             </div>
           ))}
         </div>

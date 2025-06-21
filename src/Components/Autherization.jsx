@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import API_URL from '../config'
 
 export default function Authorization() {
   const [CurrentPage, setCurrentPage] = useState('signup')
@@ -15,7 +16,7 @@ export default function Authorization() {
     }
     console.log(data)
     try {
-      const res = await axios.post('http://localhost:5500/auth/signup', data);
+      const res = await axios.post(`${API_URL}/auth/signup`, data);
       console.log(res.data);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
@@ -34,7 +35,7 @@ export default function Authorization() {
       password: e.target.password.value
     }
     try {
-      const res = await axios.post('http://localhost:5500/auth/login', data);
+      const res = await axios.post(`${API_URL}/auth/login`, data);
       console.log(res.data);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));

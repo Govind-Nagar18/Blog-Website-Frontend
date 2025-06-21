@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Trash, Edit } from "lucide-react";
+import API_URL from "../config";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -12,7 +13,7 @@ function Profile() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const profileRes = await axios.get("http://localhost:5500/auth/profile", {
+        const profileRes = await axios.get(`${API_URL}/auth/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(profileRes.data);
@@ -21,7 +22,7 @@ function Profile() {
       }
 
       try {
-        const blogsRes = await axios.get("http://localhost:5500/blog/myblog", {
+        const blogsRes = await axios.get(`${API_URL}/blog/myBlogs`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserBlogs(blogsRes.data.myBlogs || []);
@@ -45,7 +46,7 @@ function Profile() {
   {
     try
     {
-      const res = await axios.delete(`http://127.0.0.1:5500/blog/${blogid}`,{
+      const res = await axios.delete(`${API_URL}/blog/${blogid}`,{
       headers:{
         Authorization: `Bearer ${token}`
       }

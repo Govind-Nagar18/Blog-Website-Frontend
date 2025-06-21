@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import API_URL from '../config';
 
 export default function Editblog() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function Editblog() {
     };
 
     try {
-      const res = await axios.put(`http://127.0.0.1:5500/blog/${id}`, data, {
+      const res = await axios.put(`${API_URL}/blog/${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
